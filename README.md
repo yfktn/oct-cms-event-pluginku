@@ -1,1 +1,3 @@
 Ini adalah plugin event untuk kebutuhan internal kantor, mau dipake untuk kebutuhan anda? silahkan ...
+
+Membutuhkan plugin Image Resizer dari Tough Developer ... ditesting menggunakan versi 1.3.6
