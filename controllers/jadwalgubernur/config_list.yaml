@@ -1,0 +1,12 @@
+list: $/yanfriskantoni/eventgubernur/models/egitem/columns.yaml
+modelClass: YanFriskantoni\EventGubernur\Models\EGItem
+title: Agenda Kegiatan
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'yanfriskantoni/eventgubernur/jadwalgubernur/update/:id'

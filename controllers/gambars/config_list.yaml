@@ -1,0 +1,12 @@
+title: Gambars
+modelClass: YanFriskantoni\EventGubernur\Models\Gambars
+list: $/yanfriskantoni/eventgubernur/models/gambars/columns.yaml
+recordUrl: 'yanfriskantoni/eventgubernur/gambars/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+recordsPerPage: 20
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'

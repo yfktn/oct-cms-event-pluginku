@@ -1,0 +1,63 @@
+<?php namespace YanFriskantoni\EventGubernur\Components;
+
+use Cms\Classes\ComponentBase;
+use ApplicationException;
+use YanFriskantoni\EventGubernur\Models\EGItem as ItemKegiatan;
+
+class Detail extends ComponentBase
+{
+    /**
+     * untuk referensi kegiatan
+     */
+    public $kegiatan;
+
+    /**
+     * Untuk slug
+     */
+    public $currentSlug;
+
+    public function componentDetails()
+    {
+        return [
+            'name'        => 'Kegiatan Detail',
+            'description' => 'Menampilkan kegiatan detail Pak Gub.'
+        ];
+    }
+
+    public function defineProperties()
+    {
+        return [
+            'slug' => [
+                'title'       => 'Setting Slug',
+                'description' => 'Nama bagian slug di URL',
+                'default'     => '{{ :slug }}',
+                'type'        => 'string'
+            ],
+            'listPage' => [
+                'title'       => 'Halaman Daftar Kegiatan',
+                'description' => 'Link menuju halaman daftar kegiatan',
+                'default'     => 'jadwal',
+                'type'        => 'string'
+            ],
+        ];
+    }
+
+    public function onRun()
+    {
+		$this->prepareVars();
+        $this->kegiatan = $this->loadKegiatan();
+    }
+	
+	protected function prepareVars() 
+	{
+		$this->currentSlug = $this->property('slug');
+	}
+
+    protected function loadKegiatan()
+    {
+        $slug = $this->property('slug');
+        $kegiatan = new ItemKegiatan;
+        $kegiatan = $kegiatan->where('slug', $slug)->first();
+        return $kegiatan;
+    }
+}

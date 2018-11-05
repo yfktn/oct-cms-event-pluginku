@@ -1,0 +1,12 @@
+columns:
+    judul:
+        label: Judul
+        type: text
+        searchable: true
+    tgl_mulai:
+        label: Tanggal
+        type: date
+        sortable: true
+    jam_mulai:
+        label: Jam
+        type: time

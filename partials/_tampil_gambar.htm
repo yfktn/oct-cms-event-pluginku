@@ -1,0 +1,6 @@
+<?php
+use ToughDeveloper\ImageResizer\Classes\Image;
+
+$image = new Image($value->path);
+?>
+<img src="<?= $image->resize(200, 150, [ 'mode' => 'crop' ]) ?>">

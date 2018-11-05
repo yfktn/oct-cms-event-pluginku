@@ -1,0 +1,11 @@
+name: Pencetakan Jadwal
+modelClass: YanFriskantoni\EventGubernur\Models\EGItem
+form: $/yanfriskantoni/eventgubernur/models/egitem/cetak.yaml
+defaultRedirect: yanfriskantoni/eventgubernur/cetakjadwal/create
+create:
+    redirect: 'yanfriskantoni/eventgubernur/cetakjadwal/update/:id'
+    redirectClose: yanfriskantoni/eventgubernur/cetakjadwal
+update:
+    redirect: yanfriskantoni/eventgubernur/cetakjadwal
+    redirectClose: yanfriskantoni/eventgubernur/cetakjadwal
+preview: {  }

@@ -1,0 +1,37 @@
+{% for kegiatan in daftarKegiatan %}
+	{% set banding = date(kegiatan.tgl_mulai) %}
+	{% set theNow  = date(theNow) %}
+	{# sesuai permintaan maka untuk yang belum dijalankan serta saat ini tidak akan ditampilkan buat yang user tidak login! #}
+	{% set tampilkan = theNow == banding ? false: (theNow < banding ? false : true) %}
+	{% if user %}
+		{% set tampilkan = true %}
+	{% endif %}
+	{% if tampilkan %} 
+	<div class="panel {{ theNow == banding ? 'panel-primary': (theNow < banding ? 'panel-warning' : 'panel-success') }}">
+		<div class="panel-heading">
+			<h4>
+				<i class="fa fa-calendar" aria-hidden="true"></i> {{ kegiatan.tgl_mulai|date('d-m-Y') }} 
+				<i class="fa fa-clock-o" aria-hidden="true"></i> {{ kegiatan.jam_mulai|date('H:i') }} 
+				<i class="fa fa-pencil-square" aria-hidden="true"></i> {{ kegiatan.judul }}
+			</h4>
+		</div>
+		<div class="panel-body">
+			<div class="media">
+				<div class="media-left">
+					<img src="{{ kegiatan.cover.getPath() | resize(85, 85, { mode: 'crop' }) }}" alt="Cover kegiatan">
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">Leading Sector: {{ kegiatan.pelaksana_kegiatan ?: 'SOPD Prov Kalteng' }}</h4>
+					{{ kegiatan.ringkasan }}.
+					<br>
+					<a class="btn btn-xs btn-info" href="/{{ linkKeDetail }}/{{ kegiatan.slug }}" title="Link detail kegiatan {{ kegiatan.judul }}">
+						<i class="fa fa-info-circle"></i> Detail Kegiatan
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+{% else %}
+	<p>{{ pesanTiadaData?: 'Maaf tiada kegiatan tercatat ...'}}</p>
+{% endfor %}

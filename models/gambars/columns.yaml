@@ -1,0 +1,10 @@
+columns:
+    tampil:
+        label: Tampil
+        type: switch
+        searchable: true
+        sortable: true
+    gambar:
+        label: Gambar
+        type: partial
+        path: $/yanfriskantoni/eventgubernur/partials/_tampil_gambar.htm

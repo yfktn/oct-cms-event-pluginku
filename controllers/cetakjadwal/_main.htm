@@ -1,0 +1,39 @@
+<h1>Pencetakan Jadwal Kegiatan Lingkup Pemerintah Provinsi Kalimantan Tengah
+<br><small>Periode Kegiatan <?= date('d-m-Y', strtotime($input['tgl_dari'])) ?> s.d <?= date('d-m-Y', strtotime($input['tgl_sd'])) ?></small></h1>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Kegiatan</th>
+			<th>Waktu</th>
+			<th>Lokasi</th>
+			<th>Peserta</th>
+			<th>Pakaian</th>
+			<th>Pelaksana Keg.</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach($data as $d): ?>
+		<tr>
+			<td>
+				<?= $d->judul ?>
+			</td>
+			<td>
+				<?= date('d-m-Y', strtotime($d->tgl_mulai)) . ' ' . substr($d->jam_mulai,0, 5) ?>
+			</td>
+			<td>
+				<?= $d->lokasi ?>
+			</td>
+			<td>
+				<?= $d->peserta ?>
+			</td>
+			<td>
+				<?= $d->pakaian ?>
+			</td>
+			<td>
+				<?= $d->pelaksana_kegiatan ?>
+			</td>
+			
+		</tr>
+		<?php endforeach; ?>
+	</tbody>
+</table>

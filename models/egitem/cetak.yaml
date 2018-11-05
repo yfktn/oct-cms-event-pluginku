@@ -1,0 +1,13 @@
+fields:
+    tgl_dari:
+        label: 'Tanggal Dari'
+        mode: date
+        span: auto
+        type: datepicker
+        comment: 'Masukkan tanggal mulai ingin dirender'
+    tgl_sd:
+        label: 'Tanggal Sampai Dengan'
+        mode: date
+        span: auto
+        type: datepicker
+        comment: 'Masukkan tanggal sampai dengan ingin dirender'

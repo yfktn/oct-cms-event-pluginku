@@ -1,0 +1,18 @@
+fields:
+    gambar:
+        label: 'Pilih Gambar'
+        mode: image
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: full
+        type: fileupload
+        comment: 'Pilih gambar untuk tampil'
+    tampil:
+        label: 'Gambar ditampilkan?'
+        span: left
+        default: 1
+        required: 1
+        type: switch
+        comment: 'Aktifkan untuk menampilkan gambar di halaman depan'

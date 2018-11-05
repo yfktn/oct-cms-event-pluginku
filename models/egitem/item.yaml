@@ -1,0 +1,110 @@
+fields:
+    judul:
+        label: Judul
+        span: full
+        required: 1
+        type: text
+        comment: 'Masukkan Judul Kegiatan'
+    tgl_mulai:
+        label: 'Tanggal Kegiatan'
+        mode: date
+        span: left
+        required: 1
+        type: datepicker
+        comment: 'Masukkan Tanggal Pelaksanaan'
+    jam_mulai:
+        label: 'Jam Mulai'
+        mode: time
+        span: auto
+        required: 1
+        type: datepicker
+        comment: 'Masukkan Jam Mulai Kegiatan'
+    pakaian:
+        label: Pakaian
+        span: auto
+        required: 1
+        type: text
+        comment: 'Tuliskan Aturan Singkat Pakaian Kegiatan'
+    lokasi:
+        label: Lokasi
+        span: auto
+        placeholder: ''
+        required: 1
+        type: text
+        comment: 'Masukkan Lokasi Kegiatan'
+    pelaksana_kegiatan:
+        label: 'Leading Sector'
+        span: auto
+        required: 1
+        type: text
+        comment: 'Siapa pelaksana kegiatan kali ini?'
+    peserta:
+        label: Peserta
+        span: auto
+        required: 1
+        type: text
+        comment: 'Masukkan Peserta Kegiatan'
+    penjelasan:
+        label: 'Penjelasan Tambahan'
+        size: small
+        span: auto
+        type: textarea
+        comment: 'Masukkan Tambahan Penjelasan Bila Perlu'
+    cover:
+        label: 'Cover Kegiatan'
+        mode: image
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload
+        comment: 'Pilih gambar untuk cover kegiatan'
+tabs:
+    fields:
+        lampiran:
+            label: 'Upload Lampiran'
+            mode: file
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: full
+            type: fileupload
+            comment: 'Pilih File Untuk Lampiran'
+            tab: 'File Lampiran'
+        gambar:
+            label: 'Upload Gambar'
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            comment: 'Masukkan Gambar Kegiatan'
+            tab: 'Galleri Kegiatan'
+        tgl_selesai:
+            label: 'Tanggal Selesai'
+            mode: date
+            span: auto
+            type: datepicker
+            comment: 'Pilih Tanggal Selesai, Kosongkan Bila Sama dengan Tanggal Mulai'
+            tab: 'Isian Lanjutan'
+        jam_selesai:
+            label: 'Jam Selesai'
+            mode: time
+            span: auto
+            type: datepicker
+            comment: 'Kosongkan Bila Tentative'
+            tab: 'Isian Lanjutan'
+        slug:
+            label: Slug
+            span: auto
+            defaultFrom: judul
+            preset:
+                field: judul
+                type: slug
+            type: text
+            comment: 'Biarkan isian Untuk Default, rubah bila diperlukan'
+            tab: 'Isian Lanjutan'

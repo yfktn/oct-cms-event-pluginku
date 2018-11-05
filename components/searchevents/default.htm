@@ -1,0 +1,21 @@
+<form
+	data-request="{{ __SELF__ }}::onSearch"
+	data-request-update="'{{ __SELF__ }}::list': '#result'"
+	data-request-flash>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Pencarian Kegiatan</h3>
+        </div>
+        <div class="panel-body">
+            <div class="input-group">
+                <input type="text" id="keywords" class="form-control" value="" name="keywords" placeholder="Apa yang dicari?"> 
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn btn-primary" data-attach-loading>Cari</button>
+                </span>
+            </div>
+			<div id="result">
+				Menunggu proses ...
+			</div>
+        </div>
+    </div>
+</form>

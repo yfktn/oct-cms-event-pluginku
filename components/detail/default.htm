@@ -1,0 +1,99 @@
+{% set currentSlug = __SELF__.currentSlug %}
+{% set kegiatan = __SELF__.kegiatan %}
+<h2>{{ kegiatan.judul }}</h2>
+<table class="table table-striped table-hover">
+	<thead class="thead-inverse">
+		<tr>
+			<th>Item</th>
+			<th>Konten</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Tanggal</td>
+			<td>{{ kegiatan.tgl_mulai | date('d-m-Y') }}</td>
+		</tr>
+		<tr>
+			<td>Jam Mulai</td>
+			<td>{{ kegiatan.jam_mulai | date('H:i') }}</td>
+		</tr>
+		<tr>
+			<td>Lokasi</td>
+			<td>{{ kegiatan.lokasi }}</td>
+		</tr>
+		<tr>
+			<td>Peserta</td>
+			<td>{{ kegiatan.peserta }}</td>
+		</tr>
+		<tr>
+			<td>Pakaian</td>
+			<td>{{ kegiatan.pakaian }}</td>
+		</tr>
+		<tr>
+			<td>Pelaksana Kegiatan</td>
+			<td>{{ kegiatan.pelaksana_kegiatan }}</td>
+		</tr>
+		<tr>
+			<td>Penjelasan Tambahan</td>
+			<td>{{ kegiatan.penjelasan }}</td>
+		</tr>
+		{% if kegiatan.lampiran.count > 0 %}
+		<tr class="info">
+			<td colspan="2">
+				<h3>Lampiran</h3>
+			</td>
+		</tr>
+		{% for lampiran in kegiatan.lampiran %}
+		<tr>
+			<td>
+				{{ lampiran.title ? lampiran.title : lampiran.file_name }}
+			</td>
+			<td>
+				<a title="klik untuk mengunduh" href="{{lampiran.getPath()}}">File {{ lampiran.file_name }}</a><br>
+				{{ lampiran.description }}
+			</td>
+		</tr>
+		{% endfor %}
+		{% endif %}
+		{% if kegiatan.gambar.count > 0 %}
+		<tr class="info">
+			<td colspan="2">
+				<h3>Galleri Kegiatan</h3>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			{# counter untuk memberikan informasi tentang pencetakan row pada sistem grid di galeri #}
+			{% set lastS = 1 %}
+			{% set lastE = 3 %}
+			{% for gambar in kegiatan.gambar %}
+				{% if lastS == loop.index %}
+					<div class="row">
+					{% set lastS = lastS + 3 %}
+				{% endif %}
+				
+					<div class="col-md-4">
+						<div class="thumbnail">
+							<a title="klik untuk mengunduh" href="{{gambar.getPath()}}">
+								<img src="{{ gambar.getPath() | resize(200, 150, { mode: 'crop' }) }}" style="width:100%" alt="{{ gambar.title ? gambar.title : gambar.file_name }}">
+								<div class="caption">
+									{{ gambar.title ? gambar.title : gambar.file_name }} {{ gambar.description ? '- ' ~ gambar.description }}
+								</div>
+							</a>							
+						</div>
+					</div>
+					
+				{% if lastE == loop.index %}
+					</div>
+					{% set lastE = lastE + 3 %}
+				{% endif %}
+			{% endfor %}
+			{# perhatikan bila div terakhir tidak ditutup #}
+			{% if not lastE is divisible by(3) %}
+				</div>
+			{% endif %}
+			</td>
+		</tr>
+		{% endif %}
+	</tbody>
+</table>
