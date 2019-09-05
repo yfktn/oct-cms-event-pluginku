@@ -1,4 +1,4 @@
-<?php namespace YanFriskantoni\EventGubernur\Models;
+<?php namespace Yfktn\EventGubernur\Models;
 
 use Model;
 use Carbon\Carbon;
@@ -24,7 +24,7 @@ class EGItem extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'yanfriskantoni_eventgubernur_item';
+    public $table = 'yfktn_eventgubernur_item';
 
     public $attachMany = [
         'lampiran' => 'System\Models\File',

@@ -1,4 +1,4 @@
-<?php namespace YanFriskantoni\EventGubernur\Controllers;
+<?php namespace Yfktn\EventGubernur\Controllers;
 
 use Backend\Classes\Controller;
 use BackendMenu;
@@ -17,6 +17,6 @@ class JadwalGubernur extends Controller
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('YanFriskantoni.EventGubernur', 'mm-jadwal-gub');
+        BackendMenu::setContext('Yfktn.EventGubernur', 'mm-jadwal-gub');
     }
 }

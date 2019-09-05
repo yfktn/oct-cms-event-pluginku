@@ -1,6 +1,6 @@
 plugin:
-    name: 'yanfriskantoni.eventgubernur::lang.plugin.name'
-    description: 'yanfriskantoni.eventgubernur::lang.plugin.description'
+    name: 'yfktn.eventgubernur::lang.plugin.name'
+    description: 'yfktn.eventgubernur::lang.plugin.description'
     author: 'Yan Friskantoni'
     icon: oc-icon-calendar
     homepage: ''
@@ -17,20 +17,20 @@ permissions:
 navigation:
     mm-jadwal-gub:
         label: 'Agenda Kegiatan'
-        url: yanfriskantoni/eventgubernur/jadwalgubernur
+        url: yfktn/eventgubernur/jadwalgubernur
         icon: icon-calendar
         permissions:
             - 'Entri Event'
         sideMenu:
             side-menu-item-cetak:
                 label: Pencetakan
-                url: yanfriskantoni/eventgubernur/cetakjadwal/create
+                url: yfktn/eventgubernur/cetakjadwal/create
                 icon: icon-print
                 permissions:
                     - 'Cetak Event'
             side-menu-item-gambars:
                 label: 'Gambar Depan'
-                url: yanfriskantoni/eventgubernur/gambars
+                url: yfktn/eventgubernur/gambars
                 icon: icon-skyatlas
                 permissions:
                     - 'Entri Gambar Depan'

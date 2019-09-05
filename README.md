@@ -6,8 +6,8 @@ Proses Install:
 
 ```
 $ cd folder-plugin-project-oct/
-$ mkdir yanfriskantoni
-$ git clone yfktn/oct-cms-event-pluginku yanfriskantoni/eventgubernur
+$ mkdir yfktn
+$ git clone yfktn/oct-cms-event-pluginku yfktn/eventgubernur
 $ cd root-project-oct/
-$ php artisan plugin:refresh yanfriskantoni.eventgubernur
+$ php artisan plugin:refresh yfktn.eventgubernur
 ```

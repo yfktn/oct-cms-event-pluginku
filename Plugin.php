@@ -1,4 +1,4 @@
-<?php namespace YanFriskantoni\EventGubernur;
+<?php namespace Yfktn\EventGubernur;
 
 use System\Classes\PluginBase;
 
@@ -7,11 +7,11 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            '\YanFriskantoni\EventGubernur\Components\CalendarGub' => 'calendargub',
-            '\YanFriskantoni\EventGubernur\Components\DaftarKegiatan' => 'daftarkegiatan',
-            '\YanFriskantoni\EventGubernur\Components\DaftarKegiatanPada' => 'daftarkegiatanpada',
-            '\YanFriskantoni\EventGubernur\Components\Detail' => 'detail',
-            '\YanFriskantoni\EventGubernur\Components\SearchEvents' => 'pencarian'
+            '\Yfktn\EventGubernur\Components\CalendarGub' => 'calendargub',
+            '\Yfktn\EventGubernur\Components\DaftarKegiatan' => 'daftarkegiatan',
+            '\Yfktn\EventGubernur\Components\DaftarKegiatanPada' => 'daftarkegiatanpada',
+            '\Yfktn\EventGubernur\Components\Detail' => 'detail',
+            '\Yfktn\EventGubernur\Components\SearchEvents' => 'pencarian'
         ];
     }
 

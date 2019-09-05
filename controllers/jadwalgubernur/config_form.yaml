@@ -1,10 +1,10 @@
 name: Agenda Kegiatan
-form: $/yanfriskantoni/eventgubernur/models/egitem/item.yaml
-modelClass: YanFriskantoni\EventGubernur\Models\EGItem
-defaultRedirect: yanfriskantoni/eventgubernur/jadwalgubernur
+form: $/yfktn/eventgubernur/models/egitem/item.yaml
+modelClass: Yfktn\EventGubernur\Models\EGItem
+defaultRedirect: yfktn/eventgubernur/jadwalgubernur
 create:
-    redirect: 'yanfriskantoni/eventgubernur/jadwalgubernur/update/:id'
-    redirectClose: yanfriskantoni/eventgubernur/jadwalgubernur
+    redirect: 'yfktn/eventgubernur/jadwalgubernur/update/:id'
+    redirectClose: yfktn/eventgubernur/jadwalgubernur
 update:
-    redirect: yanfriskantoni/eventgubernur/jadwalgubernur
-    redirectClose: yanfriskantoni/eventgubernur/jadwalgubernur
+    redirect: yfktn/eventgubernur/jadwalgubernur
+    redirectClose: yfktn/eventgubernur/jadwalgubernur

@@ -1,4 +1,4 @@
-<?php namespace YanFriskantoni\EventGubernur\Controllers;
+<?php namespace Yfktn\EventGubernur\Controllers;
 
 use Backend\Classes\Controller;
 use BackendMenu;
@@ -17,6 +17,6 @@ class Gambars extends Controller
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('YanFriskantoni.EventGubernur', 'mm-jadwal-gub', 'side-menu-item-gambars');
+        BackendMenu::setContext('Yfktn.EventGubernur', 'mm-jadwal-gub', 'side-menu-item-gambars');
     }
 }

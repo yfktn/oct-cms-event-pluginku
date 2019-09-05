@@ -1,10 +1,10 @@
-<?php namespace YanFriskantoni\EventGubernur\Components;
+<?php namespace Yfktn\EventGubernur\Components;
 
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
 use ApplicationException;
 use Carbon\Carbon;
-use YanFriskantoni\EventGubernur\Models\EGItem as ItemKegiatan;
+use Yfktn\EventGubernur\Models\EGItem as ItemKegiatan;
 
 class SearchEvents extends ComponentBase
 {

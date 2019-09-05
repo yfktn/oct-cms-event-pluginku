@@ -1,4 +1,4 @@
-<?php namespace YanFriskantoni\EventGubernur\Updates;
+<?php namespace Yfktn\EventGubernur\Updates;
 
 use Schema;
 use October\Rain\Database\Updates\Migration;
@@ -7,7 +7,7 @@ class BuilderTableUpdateYanfriskantoniEventgubernurItem extends Migration
 {
     public function up()
     {
-        Schema::table('yanfriskantoni_eventgubernur_item', function($table)
+        Schema::table('yfktn_eventgubernur_item', function($table)
         {
             $table->date('tgl_mulai');
             $table->date('tgl_selesai')->nullable();
@@ -22,7 +22,7 @@ class BuilderTableUpdateYanfriskantoniEventgubernurItem extends Migration
     
     public function down()
     {
-        Schema::table('yanfriskantoni_eventgubernur_item', function($table)
+        Schema::table('yfktn_eventgubernur_item', function($table)
         {
             $table->dropColumn('tgl_mulai');
             $table->dropColumn('tgl_selesai');

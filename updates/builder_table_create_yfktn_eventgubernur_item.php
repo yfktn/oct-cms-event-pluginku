@@ -1,4 +1,4 @@
-<?php namespace YanFriskantoni\EventGubernur\Updates;
+<?php namespace Yfktn\EventGubernur\Updates;
 
 use Schema;
 use October\Rain\Database\Updates\Migration;
@@ -7,7 +7,7 @@ class BuilderTableCreateYanfriskantoniEventgubernurItem extends Migration
 {
     public function up()
     {
-        Schema::create('yanfriskantoni_eventgubernur_item', function($table)
+        Schema::create('yfktn_eventgubernur_item', function($table)
         {
             $table->engine = 'InnoDB';
             $table->increments('id');
@@ -18,6 +18,6 @@ class BuilderTableCreateYanfriskantoniEventgubernurItem extends Migration
     
     public function down()
     {
-        Schema::dropIfExists('yanfriskantoni_eventgubernur_item');
+        Schema::dropIfExists('yfktn_eventgubernur_item');
     }
 }

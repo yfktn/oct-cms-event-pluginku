@@ -7,4 +7,4 @@ columns:
     gambar:
         label: Gambar
         type: partial
-        path: $/yanfriskantoni/eventgubernur/partials/_tampil_gambar.htm
+        path: $/yfktn/eventgubernur/partials/_tampil_gambar.htm

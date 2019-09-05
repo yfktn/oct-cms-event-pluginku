@@ -1,10 +1,10 @@
 name: Gambars
-form: $/yanfriskantoni/eventgubernur/models/gambars/fields.yaml
-modelClass: YanFriskantoni\EventGubernur\Models\Gambars
-defaultRedirect: yanfriskantoni/eventgubernur/gambars
+form: $/yfktn/eventgubernur/models/gambars/fields.yaml
+modelClass: Yfktn\EventGubernur\Models\Gambars
+defaultRedirect: yfktn/eventgubernur/gambars
 create:
-    redirect: 'yanfriskantoni/eventgubernur/gambars/update/:id'
-    redirectClose: yanfriskantoni/eventgubernur/gambars
+    redirect: 'yfktn/eventgubernur/gambars/update/:id'
+    redirectClose: yfktn/eventgubernur/gambars
 update:
-    redirect: yanfriskantoni/eventgubernur/gambars
-    redirectClose: yanfriskantoni/eventgubernur/gambars
+    redirect: yfktn/eventgubernur/gambars
+    redirectClose: yfktn/eventgubernur/gambars

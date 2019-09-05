@@ -1,0 +1,49 @@
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed table-striped">
+        <thead>
+            <tr>
+                <th colspan="7" class="text-center">
+                    <span class="btn-group">
+                        <!--<a class="btn"><i class="fa fa-arrow-circle-o-left"></i></a>-->
+                        <a class="btn btn-info">{{ currMonth| panggilbulan }} {{ currYear }}</a>
+                        <!--<a class="btn"><i class="fa fa-arrow-circle-o-right"></i></a>-->
+                    </span>
+                </th>
+<!--                <th colspan="7" style="text-align: center; font-size: 18pt;">
+                    <a class="btn btn-xs btn-danger" href="/{{ this.page.baseFileName ~ '/' ~ prevYear ~ '/' ~ prevMonth }}/"><i class="fa fa-arrow-left"></i></a> |
+                    Kalendar Bulan {{ currMonth | panggilbulan }} Tahun {{ currYear }}
+                    | <a class="btn btn-xs btn-primary" href="/{{ this.page.baseFileName ~ '/' ~ nextYear ~ '/' ~ nextMonth }}/"><i class="fa fa-arrow-right"></i></a>
+                </th>-->
+            </tr>
+            <tr>
+                <th>Se</th>
+                <th>Sl</th>
+                <th>Rb</th>
+                <th>Ka</th>
+                <th>Ju</th>
+                <th>Sa</th>
+                <th>Mi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set currDay = "now"|date('d') %}
+            {% for weeks in theData %}
+            <tr>
+                {% for day in weeks %}
+                <td>
+                    {% if day != -1 %}
+                        {% if daftarKegiatan[day] is defined %}
+                        <a class="btn btn-danger btn-xs">{{ day }}</a>
+                        {% elseif day == currDay %}
+                        <a class="btn btn-warning btn-xs">{{ day }}</a>
+                        {% else %}
+                        {{ day }}
+                        {% endif %}
+                    {% endif %}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

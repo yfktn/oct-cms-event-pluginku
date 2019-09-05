@@ -1,8 +1,8 @@
-<?php namespace YanFriskantoni\EventGubernur\Components;
+<?php namespace Yfktn\EventGubernur\Components;
 
 use Cms\Classes\ComponentBase;
 use ApplicationException;
-use YanFriskantoni\EventGubernur\Models\EGItem as ItemKegiatan;
+use Yfktn\EventGubernur\Models\EGItem as ItemKegiatan;
 
 class Detail extends ComponentBase
 {

@@ -1,4 +1,4 @@
-<?php namespace YanFriskantoni\EventGubernur\Models;
+<?php namespace Yfktn\EventGubernur\Models;
 
 use Model;
 
@@ -18,7 +18,7 @@ class Gambars extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'yanfriskantoni_eventgubernur_gambars';
+    public $table = 'yfktn_eventgubernur_gambars';
 	
 	/**
 	 * untuk gambar yang tampil di depan

@@ -1,11 +1,11 @@
-<?php namespace YanFriskantoni\EventGubernur\Controllers;
+<?php namespace Yfktn\EventGubernur\Controllers;
 
 use Backend\Classes\Controller;
 use BackendMenu;
 use Input;
 use Redirect;
 use Backend;
-use YanFriskantoni\EventGubernur\Models\EGItem as ItemKegiatan;
+use Yfktn\EventGubernur\Models\EGItem as ItemKegiatan;
 
 class CetakJadwal extends Controller
 {
@@ -20,7 +20,7 @@ class CetakJadwal extends Controller
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('YanFriskantoni.EventGubernur', 'mm-jadwal-gub', 'side-menu-item-cetak');
+        BackendMenu::setContext('Yfktn.EventGubernur', 'mm-jadwal-gub', 'side-menu-item-cetak');
     }
 	
 	public function onBeforeCetak() 
@@ -30,15 +30,15 @@ class CetakJadwal extends Controller
 			'tgl_sd' => Input::get('EGItem.tgl_sd'),
 		];
 		//return $params;
-		$param = Backend::url('yanfriskantoni/eventgubernur/cetakjadwal/cetak');
+		$param = Backend::url('yfktn/eventgubernur/cetakjadwal/cetak');
 		$url = "{$param}?tgl_dari=".Input::get('EGItem.tgl_dari').'&'.'tgl_sd='.Input::get('EGItem.tgl_sd');
 		//return $param;
-		//return $this->controller->pageUrl(Backend::url('yanfriskantoni/eventgubernur/cetakjadwal/cetak'), [
+		//return $this->controller->pageUrl(Backend::url('yfktn/eventgubernur/cetakjadwal/cetak'), [
 		//	'tgl_dari' => Input::get('EGItem.tgl_dari'),
 		//	'tgl_sd' => Input::get('EGItem.tgl_sd')
 		//	]);
 		return Redirect::to($url);
-		//return Redirect::to(Backend::url('yanfriskantoni/eventgubernur/cetakjadwal/cetak'));
+		//return Redirect::to(Backend::url('yfktn/eventgubernur/cetakjadwal/cetak'));
 	}
 	
 	public function cetak() 

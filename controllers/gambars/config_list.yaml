@@ -1,7 +1,7 @@
 title: Gambars
-modelClass: YanFriskantoni\EventGubernur\Models\Gambars
-list: $/yanfriskantoni/eventgubernur/models/gambars/columns.yaml
-recordUrl: 'yanfriskantoni/eventgubernur/gambars/update/:id'
+modelClass: Yfktn\EventGubernur\Models\Gambars
+list: $/yfktn/eventgubernur/models/gambars/columns.yaml
+recordUrl: 'yfktn/eventgubernur/gambars/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
 recordsPerPage: 20
 showSetup: true
