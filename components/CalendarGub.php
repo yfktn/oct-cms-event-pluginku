@@ -67,6 +67,9 @@ class CalendarGub extends ComponentBase {
         // set front end timezone
         $this->frontEndTimezone = config('yfktn.eventgubernur::defaultFrontEndTZ');
         
+        // berikan ke calendar sesuai dengan front end TZ untuk tanggal hari ini
+        $this->page['currDate'] = Carbon::now($this->frontEndTimezone);
+        
         $this->month = (int) $this->param($this->paramName("tmonth"));
         $this->year = (int) $this->param($this->paramName("tyear"));
 
@@ -119,8 +122,6 @@ class CalendarGub extends ComponentBase {
     protected function loadCalendar() {
         $theData = [];
         $now = Carbon::createFromDate($this->year, $this->month, 1, $this->frontEndTimezone);
-        // berikan ke calendar sesuai dengan front end TZ untuk tanggal hari ini
-        $this->page['currDay'] = $now->day;
         $this->setPrevNextURL($now->month, $now->year);
         $this->setDataKegiatan($now);
         $daysInMonth = $now->daysInMonth;

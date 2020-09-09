@@ -35,7 +35,7 @@
                     {% if day != -1 %}
                         {% if daftarKegiatan[day] is defined %}
                         <a class="btn btn-danger btn-xs">{{ day }}</a>
-                        {% elseif day == currDay %}
+                        {% elseif currMonth == currDate.month and currYear == currDate.year and day == currDate.day %}
                         <a class="btn btn-warning btn-xs">{{ day }}</a>
                         {% else %}
                         {{ day }}
