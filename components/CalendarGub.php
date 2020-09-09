@@ -119,6 +119,8 @@ class CalendarGub extends ComponentBase {
     protected function loadCalendar() {
         $theData = [];
         $now = Carbon::createFromDate($this->year, $this->month, 1, $this->frontEndTimezone);
+        // berikan ke calendar sesuai dengan front end TZ untuk tanggal hari ini
+        $this->page['currDay'] = $now->day;
         $this->setPrevNextURL($now->month, $now->year);
         $this->setDataKegiatan($now);
         $daysInMonth = $now->daysInMonth;

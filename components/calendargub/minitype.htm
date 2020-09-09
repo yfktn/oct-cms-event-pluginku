@@ -26,7 +26,8 @@
             </tr>
         </thead>
         <tbody>
-            {% set currDay = "now"|date('d') %}
+            {# currDay sudah ada di set di component #}
+            {# set currDay = "now"|date('d') #}
             {% for weeks in theData %}
             <tr>
                 {% for day in weeks %}
