@@ -4,9 +4,9 @@
             <tr>
                 <th colspan="7" class="text-center">
                     <span class="btn-group">
-                        <!--<a class="btn"><i class="fa fa-arrow-circle-o-left"></i></a>-->
+                        <a href="{{ prevCalURL }}" class="btn btn-warning"><i class="fa fa-arrow-circle-o-left"></i> prev</a>
                         <a class="btn btn-info">{{ currMonth| panggilbulan }} {{ currYear }}</a>
-                        <!--<a class="btn"><i class="fa fa-arrow-circle-o-right"></i></a>-->
+                        <a href="{{ nextCalURL }}" class="btn btn-warning">next <i class="fa fa-arrow-circle-o-right"></i></a>
                     </span>
                 </th>
 <!--                <th colspan="7" style="text-align: center; font-size: 18pt;">
