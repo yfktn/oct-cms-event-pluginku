@@ -7,7 +7,7 @@ Proses Install:
 ```
 $ cd folder-plugin-project-oct/
 $ mkdir yfktn
-$ git clone yfktn/oct-cms-event-pluginku yfktn/eventgubernur
+$ git clone https://github.com/yfktn/oct-cms-event-pluginku yfktn/eventgubernur
 $ cd root-project-oct/
 $ php artisan plugin:refresh yfktn.eventgubernur
 ```
