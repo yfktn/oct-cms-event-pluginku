@@ -7,6 +7,8 @@ columns:
         label: Tanggal
         type: date
         sortable: true
+        ignoreTimezone : true
     jam_mulai:
         label: Jam
         type: time
+        ignoreTimezone : true
