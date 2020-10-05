@@ -79,7 +79,7 @@ class CalendarGub extends ComponentBase {
         $this->page['currMonth'] = $this->month;
         $this->page['currYear'] = $this->year;
         $this->page['linkRange'] = $this->property('linkRange');
-        $this->page['miniType'] = $this->property('miniType');
+        $this->page['miniType'] = (bool) $this->property('miniType', false);
     }
 
     protected function setPrevNextURL($currMonth, $currYear) {
