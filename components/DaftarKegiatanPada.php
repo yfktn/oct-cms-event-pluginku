@@ -10,6 +10,7 @@ use Yfktn\EventGubernur\Models\EGItem as ItemKegiatan;
  */
 class DaftarKegiatanPada extends ComponentBase
 {
+    protected $frontEndTimezone;
     /**
      * untuk referensi kegiatan pada range
      */
@@ -80,21 +81,24 @@ class DaftarKegiatanPada extends ComponentBase
 
     protected function prepareVars() 
     {
-        $this->pageParam = $this->page['pageParam'] = $this->param($this->paramName('currPage'));
+        $this->frontEndTimezone = config('yfktn.eventgubernur::defaultFrontEndTZ');
+
+        // $this->pageParam = $this->page['pageParam'] = $this->param($this->paramName('currPage'));
 		$this->tidakAdaJadwal = $this->page['tidakAdaJadwal'] = $this->property('tidakAdaJadwal');
 				
 		$this->fromDate = $this->param($this->paramName('fromDate'));
-		$this->toDate = $this->param($this->paramName('toDate'));
-		if($this->toDate === null) {
+        $this->toDate = $this->param($this->paramName('toDate'));
+		if(!$this->toDate || $this->toDate == null) {
 			$this->toDate = $this->fromDate;
 		}
 		
 		$this->page['fromDate'] = $this->fromDate;
-		$this->page['toDate'] = $this->toDate;
+        $this->page['toDate'] = $this->toDate;
+        
 		
 		// bikin link!
 		$this->detailPage = $this->page['linkKeDetail'] = $this->property('detailPage');
-		$this->page['theNow'] = date("Y-m-d");
+		$this->page['theNow'] = Carbon::now($this->frontEndTimezone);
     }
 
 	/**
@@ -103,19 +107,17 @@ class DaftarKegiatanPada extends ComponentBase
     protected function loadDaftarKegiatan()
     {
         $daftarKegiatan = new ItemKegiatan;
-        // set front end timezone
-        $frontEndTimezone = config('yfktn.eventgubernur::defaultFrontEndTZ');
         // waktu query convert ke timezone di system
         $systemTZ = config("app.timezone");
-        $fromDate = Carbon::parse($this->fromDate, $systemTZ);
-        $thoDate = Carbon::parse($this->thoDate, $systemTZ);
+        $fromDate = Carbon::parse($this->fromDate, $systemTZ)->toDateTimeString();
+        $toDate = Carbon::parse($this->toDate, $systemTZ)->toDateTimeString();
         
-				
         $daftarKegiatan = $daftarKegiatan
-			->where('tgl_mulai', '>=', $fromDate)
-			->where('tgl_mulai', '<=', $toDate)
-			->orderBy('tgl_mulai', 'DESC')->orderBy('jam_mulai', 'ASC');
-			
+            ->whereBetween('tgl_mulai', [$fromDate, $toDate])
+			// ->where('tgl_mulai', '>=', $fromDate)
+			// ->where('tgl_mulai', '<=', $toDate)
+            ->orderBy('tgl_mulai', 'DESC')->orderBy('jam_mulai', 'ASC');
+ 			
 		//var_dump($mulaiRenderDari->toDateTimeString(), $sampaiDengan->toDateTimeString());
         return $daftarKegiatan->get();
     }
