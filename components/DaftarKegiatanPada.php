@@ -103,10 +103,17 @@ class DaftarKegiatanPada extends ComponentBase
     protected function loadDaftarKegiatan()
     {
         $daftarKegiatan = new ItemKegiatan;
+        // set front end timezone
+        $frontEndTimezone = config('yfktn.eventgubernur::defaultFrontEndTZ');
+        // waktu query convert ke timezone di system
+        $systemTZ = config("app.timezone");
+        $fromDate = Carbon::parse($this->fromDate, $systemTZ);
+        $thoDate = Carbon::parse($this->thoDate, $systemTZ);
+        
 				
         $daftarKegiatan = $daftarKegiatan
-			->where('tgl_mulai', '>=', $this->fromDate)
-			->where('tgl_mulai', '<=', $this->toDate)
+			->where('tgl_mulai', '>=', $fromDate)
+			->where('tgl_mulai', '<=', $toDate)
 			->orderBy('tgl_mulai', 'DESC')->orderBy('jam_mulai', 'ASC');
 			
 		//var_dump($mulaiRenderDari->toDateTimeString(), $sampaiDengan->toDateTimeString());
