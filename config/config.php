@@ -4,5 +4,6 @@
  */
 return [
     // default timezone untuk front end
-    'defaultFrontEndTZ' => 'Asia/Jakarta'
+    'defaultFrontEndTZ' => 'Asia/Jakarta',
+    'defaultFrontEndTZLabel' => 'WIB'
 ];
