@@ -22,7 +22,11 @@
             {% for weeks in theData %}
             <tr>
                 {% for day in weeks %}
-                <td>
+                <td 
+                    {% if(day != -1 and currMonth == currDate.month and currYear == currDate.year and day == currDate.day) %}
+                        style="background-color:darkgoldenrod;"
+                    {% endif %}
+                >
                     {{ day == -1 ? "" : day }}
                     {% if(daftarKegiatan[day] is defined) %}
                     &nbsp;
