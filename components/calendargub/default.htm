@@ -3,9 +3,9 @@
         <thead>
             <tr>
                 <th colspan="7" style="text-align: center; font-size: 18pt;">
-                    <a class="btn btn-xs btn-danger" href="/{{ this.page.baseFileName ~ '/' ~ prevYear ~ '/' ~ prevMonth }}/"><i class="fa fa-arrow-left"></i></a> |
+                    <a class="btn btn-xs btn-danger" href="{{ prevCalURL }}"><i class="fa fa-arrow-left"></i> prev</a> |
                     Kalendar Bulan {{ currMonth | panggilbulan }} Tahun {{ currYear }}
-                    | <a class="btn btn-xs btn-primary" href="/{{ this.page.baseFileName ~ '/' ~ nextYear ~ '/' ~ nextMonth }}/"><i class="fa fa-arrow-right"></i></a>
+                    | <a class="btn btn-xs btn-primary" href="{{ nextCalURL }}">next <i class="fa fa-arrow-right"></i></a>
                 </th>
             </tr>
             <tr>
@@ -22,7 +22,11 @@
             {% for weeks in theData %}
             <tr>
                 {% for day in weeks %}
-                <td>
+                <td 
+                    {% if(day != -1 and currMonth == currDate.month and currYear == currDate.year and day == currDate.day) %}
+                        style="background-color:darkgoldenrod;"
+                    {% endif %}
+                >
                     {{ day == -1 ? "" : day }}
                     {% if(daftarKegiatan[day] is defined) %}
                     &nbsp;

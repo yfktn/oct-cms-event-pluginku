@@ -4,9 +4,9 @@
             <tr>
                 <th colspan="7" class="text-center">
                     <span class="btn-group">
-                        <!--<a class="btn"><i class="fa fa-arrow-circle-o-left"></i></a>-->
+                        <a href="{{ prevCalURL }}" class="btn btn-warning"><i class="fa fa-arrow-circle-o-left"></i> prev</a>
                         <a class="btn btn-info">{{ currMonth| panggilbulan }} {{ currYear }}</a>
-                        <!--<a class="btn"><i class="fa fa-arrow-circle-o-right"></i></a>-->
+                        <a href="{{ nextCalURL }}" class="btn btn-warning">next <i class="fa fa-arrow-circle-o-right"></i></a>
                     </span>
                 </th>
 <!--                <th colspan="7" style="text-align: center; font-size: 18pt;">
@@ -26,7 +26,8 @@
             </tr>
         </thead>
         <tbody>
-            {% set currDay = "now"|date('d') %}
+            {# currDay sudah ada di set di component #}
+            {# set currDay = "now"|date('d') #}
             {% for weeks in theData %}
             <tr>
                 {% for day in weeks %}
@@ -34,7 +35,7 @@
                     {% if day != -1 %}
                         {% if daftarKegiatan[day] is defined %}
                         <a class="btn btn-danger btn-xs">{{ day }}</a>
-                        {% elseif day == currDay %}
+                        {% elseif currMonth == currDate.month and currYear == currDate.year and day == currDate.day %}
                         <a class="btn btn-warning btn-xs">{{ day }}</a>
                         {% else %}
                         {{ day }}

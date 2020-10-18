@@ -10,6 +10,7 @@ class Plugin extends PluginBase
             '\Yfktn\EventGubernur\Components\CalendarGub' => 'calendargub',
             '\Yfktn\EventGubernur\Components\DaftarKegiatan' => 'daftarkegiatan',
             '\Yfktn\EventGubernur\Components\DaftarKegiatanPada' => 'daftarkegiatanpada',
+			'\Yfktn\EventGubernur\Components\DaftarKegiatanPadaBulan' => 'daftarKegiatanPadaBulan',
             '\Yfktn\EventGubernur\Components\Detail' => 'detail',
             '\Yfktn\EventGubernur\Components\SearchEvents' => 'pencarian'
         ];

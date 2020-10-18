@@ -13,6 +13,8 @@ class CalendarGub extends ComponentBase {
     public $month;
     public $year;
     public $theData;
+    
+    protected $frontEndTimezone = 'Asia/Jakarta';
 
     public function componentDetails() {
         return [
@@ -62,6 +64,12 @@ class CalendarGub extends ComponentBase {
     }
 
     protected function prepareVars() {
+        // set front end timezone
+        $this->frontEndTimezone = config('yfktn.eventgubernur::defaultFrontEndTZ');
+        
+        // berikan ke calendar sesuai dengan front end TZ untuk tanggal hari ini
+        $this->page['currDate'] = Carbon::now($this->frontEndTimezone);
+        
         $this->month = (int) $this->param($this->paramName("tmonth"));
         $this->year = (int) $this->param($this->paramName("tyear"));
 
@@ -71,19 +79,33 @@ class CalendarGub extends ComponentBase {
         $this->page['currMonth'] = $this->month;
         $this->page['currYear'] = $this->year;
         $this->page['linkRange'] = $this->property('linkRange');
-        $this->page['miniType'] = $this->property('miniType');
+        $this->page['miniType'] = (bool) $this->property('miniType', false);
     }
 
     protected function setPrevNextURL($currMonth, $currYear) {
-        $prev = Carbon::createFromDate($currYear, $currMonth, 1)->subMonth();
+        $prev = Carbon::createFromDate(
+                    $currYear, $currMonth, 1, $this->frontEndTimezone
+                )->subMonth();
         $this->page['prevMonth'] = $prev->month;
         $this->page['prevYear'] = $prev->year;
         $next = $prev->addMonth(2);
         $this->page['nextMonth'] = $next->month;
         $this->page['nextYear'] = $next->year;
+        // generate URL
+        $this->page['prevCalURL'] = $this->controller->currentPageUrl([
+            $this->paramName('tmonth') => $this->page['prevMonth'],
+            $this->paramName('tyear') => $this->page['prevYear']
+        ]);
+        $this->page['nextCalURL'] = $this->controller->currentPageUrl([
+            $this->paramName('tmonth') => $this->page['nextMonth'],
+            $this->paramName('tyear') => $this->page['nextYear']
+        ]);
     }
 
     protected function setDataKegiatan($theNow) {
+        // waktu query convert ke timezone di system
+        $systemTZ = config("app.timezone");
+        $theNowSysTZ = $theNow->timezone($systemTZ);
         $start = $theNow->year . '-' . $theNow->month . '-1';
         $end = $theNow->year . '-' . $theNow->month . '-' . $theNow->daysInMonth;
         $daftar = ItemKegiatan::whereBetween('tgl_mulai', [$start, $end])
@@ -99,11 +121,12 @@ class CalendarGub extends ComponentBase {
 
     protected function loadCalendar() {
         $theData = [];
-        $now = Carbon::createFromDate($this->year, $this->month, 1);
+        $now = Carbon::createFromDate($this->year, $this->month, 1, $this->frontEndTimezone);
         $this->setPrevNextURL($now->month, $now->year);
         $this->setDataKegiatan($now);
         $daysInMonth = $now->daysInMonth;
-        $dayOfFirstMonth = Carbon::createFromDate($now->year, $now->month, 1)->format("N");
+        $dayOfFirstMonth = Carbon::createFromDate($now->year, $now->month, 1, $this->frontEndTimezone)
+                ->format("N");
         $daysInPrevMonth = $now->subMonth()->daysInMonth;
         $daysInPrevMonth -= ($dayOfFirstMonth - 2); // to fill in the blank month
         $num = $weeks = $other = 0;

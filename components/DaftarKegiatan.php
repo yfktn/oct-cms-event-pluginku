@@ -10,6 +10,7 @@ use Yfktn\EventGubernur\Models\EGItem as ItemKegiatan;
  */
 class DaftarKegiatan extends ComponentBase
 {
+    protected $frontEndTimezone;
     /**
      * untuk referensi kegiatan
      */
@@ -90,8 +91,9 @@ class DaftarKegiatan extends ComponentBase
 		$this->tidakAdaJadwal = $this->page['tidakAdaJadwal'] = $this->property('tidakAdaJadwal');
 		
 		// bikin link!
-		$this->detailPage = $this->page['detailPage'] = $this->property('detailPage');
-		$this->page['theNow'] = date("Y-m-d");
+        $this->detailPage = $this->page['detailPage'] = $this->property('detailPage');
+        $this->frontEndTimezone = config('yfktn.eventgubernur::defaultFrontEndTZ');
+		$this->page['theNow'] = Carbon::now($this->frontEndTimezone);
 		
     }
 
@@ -104,8 +106,8 @@ class DaftarKegiatan extends ComponentBase
 		// minggu ke belakang ...
 		$mingguKeBelakang = $this->property('tampilMingguKebelakang');
 		$bulanKeDepan = $this->property('tampilBulanKeDepan');
-		$mulaiRenderDari = new Carbon(); // default is now!
-		$sampaiDengan = new Carbon();
+		$mulaiRenderDari = Carbon::now($this->frontEndTimezone); // default is now!
+		$sampaiDengan = Carbon::now($this->frontEndTimezone);
 		if($mingguKeBelakang > 0) {
 			$mulaiRenderDari = $mulaiRenderDari->subWeeks($mingguKeBelakang); // kurangi ke beberapa minggu ke belakang
 		}
@@ -114,11 +116,12 @@ class DaftarKegiatan extends ComponentBase
 			$sampaiDengan = $sampaiDengan->addMonths($bulanKeDepan); // tampil sampai berapa bulan ke depan?
 		} else {
 			$sampaiDengan = $sampaiDengan->addMonths(12); // tampil selama 1 tahun
-		}
+        }
+        $systemTZ = config("app.timezone");
 		
         $daftarKegiatan = $daftarKegiatan
-			->where('tgl_mulai', '>=', $mulaiRenderDari->toDateTimeString())
-			->where('tgl_mulai', '<=', $sampaiDengan->toDateTimeString())
+			->where('tgl_mulai', '>=', $mulaiRenderDari->copy()->timezone($systemTZ)->toDateTimeString())
+			->where('tgl_mulai', '<=', $sampaiDengan->copy()->timezone($systemTZ)->toDateTimeString())
 			->orderBy('tgl_mulai', 'DESC')->orderBy('jam_mulai', 'ASC');
 			
 		//var_dump($mulaiRenderDari->toDateTimeString(), $sampaiDengan->toDateTimeString());
