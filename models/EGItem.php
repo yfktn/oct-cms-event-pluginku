@@ -16,9 +16,7 @@ class EGItem extends Model
         'judul' => ['required'],
         'tgl_mulai' => ['required'],
         'jam_mulai' => ['required'],
-        'lokasi' => ['required'],
-        'peserta' => ['required'],
-        'pakaian' => ['required']
+        'lokasi' => ['required']
     ];
 
     /**
