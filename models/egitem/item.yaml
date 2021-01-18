@@ -5,6 +5,8 @@ fields:
         required: 1
         type: text
         comment: 'Masukkan Judul Kegiatan'
+        attributes:
+            maxlength: '2024'
     tgl_mulai:
         label: 'Tanggal Kegiatan'
         mode: date
