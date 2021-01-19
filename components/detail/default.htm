@@ -74,12 +74,12 @@
 				
 					<div class="col-md-4">
 						<div class="thumbnail">
-							<a title="klik untuk mengunduh" href="{{gambar.getPath()}}">
+							<a title="{{ gambar.title ? gambar.title : gambar.file_name }}" href="{{gambar.getPath()}}">
 								<img src="{{ gambar.getPath() | resize(200, 150, { mode: 'crop' }) }}" style="width:100%" alt="{{ gambar.title ? gambar.title : gambar.file_name }}">
 								<div class="caption">
 									{{ gambar.title ? gambar.title : gambar.file_name }} {{ gambar.description ? '- ' ~ gambar.description }}
 								</div>
-							</a>							
+							</a>
 						</div>
 					</div>
 					

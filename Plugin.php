@@ -59,7 +59,7 @@ class Plugin extends PluginBase
 
 		// lakukan penambahan untuk mendengarkan pencarian dokumen
 		\Event::listen('offline.sitesearch.query', function ($query) {
-			$provider = \Config::get('yfktn.tulisan::offlineSiteSearchResult.provider', 'Tulisan');
+			$provider = \Config::get('yfktn.eventgubernur::offlineSiteSearchResult.provider', 'Tulisan');
 			// lakukan query ke model milik tulisan
 			$items = EventGubModel::where('judul', 'like', "%{$query}%")
 			->orWhere('penjelasan', 'like', "%{$query}%")
@@ -69,15 +69,15 @@ class Plugin extends PluginBase
 			$results = $items->map(function ($item) use ($query) {
 				// If the query is found in the title, set a relevance of 2
 				$relevance = mb_stripos($item->judul, $query) !== false ? 2 : 1;
-				$generatedUrl = \Config::get('yfktn.tulisan::offlineSiteSearchResult.url');
-				if (\Config::get('yfktn.tulisan::offlineSiteSearchResult.paramDetail') == 'slug') {
+				$generatedUrl = \Config::get('yfktn.eventgubernur::offlineSiteSearchResult.url');
+				if (\Config::get('yfktn.eventgubernur::offlineSiteSearchResult.paramDetail') == 'slug') {
 					$generatedUrl .= '/' . $item->slug;
 				} else {
 					$generatedUrl .= '/' . $item->id;
 				}
 				return [
 					'title' => $item->judul,
-					'text' => $item->isi,
+					'text' => $item->judul . " di " . $item->lokasi,
 					'url' => $generatedUrl,
 					// 'thumb'     => $item->images->first(), // Instance of System\Models\File
 					'relevance' => $relevance, // higher relevance results in a higher
@@ -91,9 +91,7 @@ class Plugin extends PluginBase
 				'provider' => $provider,
 				'results' => $results
 			];
-		});
-
-    
+		});    
 	}
 		
 }

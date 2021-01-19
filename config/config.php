@@ -9,7 +9,7 @@ return [
      // merupakan setting untuk integrasi dengan plugin offline.sitesearch
     'offlineSiteSearchResult' => [
         // set nilai ini dengan url untuk detail sebuah record tulisan
-        'url'         => 'agenda/baca',
+        'url'         => 'agenda/detail',
         // ini dengan nilai param detailnya, pilihan yang ada adalah: 
         // id atau slug
         'paramDetail' => 'slug',
