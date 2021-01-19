@@ -1,6 +1,8 @@
 <?php namespace Yfktn\EventGubernur;
 
 use System\Classes\PluginBase;
+use Yfktn\EventGubernur\Models\EGItem as EventGubModel;
+
 
 class Plugin extends PluginBase
 {
@@ -50,6 +52,48 @@ class Plugin extends PluginBase
 			case 12: $d = "Desember"; break;
 		}
 		return $d;
+	}
+
+	public function boot()
+	{
+
+		// lakukan penambahan untuk mendengarkan pencarian dokumen
+		\Event::listen('offline.sitesearch.query', function ($query) {
+			$provider = \Config::get('yfktn.tulisan::offlineSiteSearchResult.provider', 'Tulisan');
+			// lakukan query ke model milik tulisan
+			$items = EventGubModel::where('judul', 'like', "%{$query}%")
+			->orWhere('penjelasan', 'like', "%{$query}%")
+			->orWhere('lokasi', 'like', "%{$query}%")
+			->get();
+			// bangun hasilnya
+			$results = $items->map(function ($item) use ($query) {
+				// If the query is found in the title, set a relevance of 2
+				$relevance = mb_stripos($item->judul, $query) !== false ? 2 : 1;
+				$generatedUrl = \Config::get('yfktn.tulisan::offlineSiteSearchResult.url');
+				if (\Config::get('yfktn.tulisan::offlineSiteSearchResult.paramDetail') == 'slug') {
+					$generatedUrl .= '/' . $item->slug;
+				} else {
+					$generatedUrl .= '/' . $item->id;
+				}
+				return [
+					'title' => $item->judul,
+					'text' => $item->isi,
+					'url' => $generatedUrl,
+					// 'thumb'     => $item->images->first(), // Instance of System\Models\File
+					'relevance' => $relevance, // higher relevance results in a higher
+					// position in the results listing
+					// 'meta' => 'data',       // optional, any other information you want
+					// to associate with this result
+					// 'model' => $item,       // optional, pass along the original model
+				];
+			});
+			return [
+				'provider' => $provider,
+				'results' => $results
+			];
+		});
+
+    
 	}
 		
 }
