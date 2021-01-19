@@ -105,7 +105,7 @@ class CalendarGub extends ComponentBase {
     protected function setDataKegiatan($theNow) {
         // waktu query convert ke timezone di system
         $systemTZ = config("app.timezone");
-        $theNowSysTZ = $theNow->timezone($systemTZ);
+        $theNowSysTZ = $theNow->copy()->timezone($systemTZ); // bug karena tidak gunakan copy!
         $start = $theNow->year . '-' . $theNow->month . '-1';
         $end = $theNow->year . '-' . $theNow->month . '-' . $theNow->daysInMonth;
         $daftar = ItemKegiatan::whereBetween('tgl_mulai', [$start, $end])
