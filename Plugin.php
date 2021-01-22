@@ -14,7 +14,8 @@ class Plugin extends PluginBase
             '\Yfktn\EventGubernur\Components\DaftarKegiatanPada' => 'daftarkegiatanpada',
 			'\Yfktn\EventGubernur\Components\DaftarKegiatanPadaBulan' => 'daftarKegiatanPadaBulan',
             '\Yfktn\EventGubernur\Components\Detail' => 'detail',
-            '\Yfktn\EventGubernur\Components\SearchEvents' => 'pencarian'
+            '\Yfktn\EventGubernur\Components\SearchEvents' => 'pencarian',
+			'\Yfktn\EventGubernur\Components\FullCalendar' => 'fullCalendar',
         ];
     }
 

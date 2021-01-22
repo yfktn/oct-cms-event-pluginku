@@ -21,3 +21,5 @@
 1.0.8:
     - 'Nullable pada beberapa bagian entrian'
     - builder_table_update_yfktn_eventgubernur_item_nullable.php
+1.0.9:
+    - 'Menambahkan komponen bootstrap calendar untuk tampilan kalendernya'
