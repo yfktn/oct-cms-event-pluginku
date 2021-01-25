@@ -14,7 +14,6 @@ fields:
         required: 1
         format: d-m-Y
         type: datepicker
-        ignoreTimezone : true
         comment: 'Masukkan Tanggal Pelaksanaan'
     jam_mulai:
         label: 'Jam Mulai'
@@ -22,7 +21,6 @@ fields:
         span: auto
         required: 1
         type: datepicker
-        ignoreTimezone : true
         comment: 'Masukkan Jam Mulai Kegiatan'
     lokasi:
         label: Lokasi
@@ -74,7 +72,7 @@ tabs:
             format: d-m-Y
             comment: 'Pilih Tanggal Selesai, Kosongkan Bila Sama dengan Tanggal Mulai'
             tab: 'Lanjutan'
-            ignoreTimezone : true
+
         jam_selesai:
             label: 'Jam Selesai'
             mode: time
@@ -82,7 +80,7 @@ tabs:
             type: datepicker
             comment: 'Kosongkan Bila Tentative'
             tab: 'Lanjutan'
-            ignoreTimezone : true
+
         slug:
             label: Slug
             span: auto
