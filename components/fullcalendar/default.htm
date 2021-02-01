@@ -1,0 +1,89 @@
+<div id="fullcalendar"></div>
+{% put styles %}
+<style>
+    /* added so titles arent cut off*/
+.fc-event {
+    white-space: unset !important;
+    cursor: pointer;
+}
+</style>
+{% endput %}
+{% put scripts %}
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('fullcalendar'),
+            headerToolbarNya = {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+            }
+        /* Create function to initialize the correct view */
+        function mobileCheck() {
+            console.log(window.innerWidth)
+            if (window.innerWidth >= 768) {
+                return false;
+            } else {
+                return true;
+            }
+        };
+
+        if(mobileCheck()) { 
+            headerToolbarNya  = {
+                left: 'title',
+                // center: 'title',
+                right: 'prev,next,mobileDays,listMonth'
+            }
+        }
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            headerToolbar: headerToolbarNya,
+            locale: 'id',
+            // businessHours: true, // display business hours
+            businessHours: {
+                // days of week. an array of zero-based day of week integers (0=Sunday)
+                daysOfWeek: [1, 2, 3, 4, 5], // monday to ...
+
+                startTime: '08:00', // a start time (10am in this example)
+                endTime: '15:30', // an end time (6pm in this example)
+            },
+            initialDate: Date.now(),
+            navLinks: true, // can click day/week names to navigate views
+            editable: false,
+            selectable: true,
+            firstDay: 1, // hari pertama adalah hari senin!
+            views: {
+                mobileDays: {
+                    type: 'dayGridWeek',
+                    duration: { days: 3 },
+                    buttonText: "short"
+                }
+            },
+            /* Choose view when initialize */
+            initialView: mobileCheck() ? "mobileDays" : "dayGridMonth",
+            /* Check if window resize and add the new view */
+            // windowResize: function (view) {
+            //     if (window.innerWidth >= 768) {
+            //         calendar.changeView('dayGridWeek');
+            //     } else {
+            //         calendar.changeView('mobileDays');
+            //     }
+            // },
+            events: {
+                url: '/api/yfktn/eventgubernur/fullcalendar/events',
+                failure: function() {
+                    console.log("Error");
+                }
+            },
+            eventClick: function (info) {
+                var url = "{{ detailPage }}/" + info.event.extendedProps.slug
+                window.open(url)
+            }
+        });
+
+        calendar.render();
+    });
+
+</script>
+
+{% endput %}

@@ -16,6 +16,8 @@ class Detail extends ComponentBase
      */
     public $currentSlug;
 
+    public $frontEndTimezone = "UTC";
+
     public function componentDetails()
     {
         return [
@@ -50,7 +52,8 @@ class Detail extends ComponentBase
 	
 	protected function prepareVars() 
 	{
-		$this->currentSlug = $this->property('slug');
+        $this->currentSlug = $this->property('slug');
+        $this->page['frontEndTimezone'] = config('yfktn.eventgubernur::defaultFrontEndTZ');
 	}
 
     protected function loadKegiatan()
