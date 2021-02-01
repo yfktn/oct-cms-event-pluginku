@@ -10,33 +10,44 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>Tanggal</td>
-			<td>{{ kegiatan.tgl_mulai | date('d-m-Y') }}</td>
-		</tr>
-		<tr>
-			<td>Jam Mulai</td>
-			<td>{{ kegiatan.jam_mulai | date('H:i') }}</td>
+			<td>Waktu Kegiatan</td>
+			<td>{{ kegiatan.tgl_mulai | date('d-m-Y', frontEndTimezone) }} {{ kegiatan.jam_mulai | date('H:i', frontEndTimezone) }}
+				{% if kegiatan.tgl_selesai != null %}
+				s.d. {{ kegiatan.tgl_selesai | date('d-m-Y', frontEndTimezone) }} 
+					{% if kegiatan.jam_selesai != null %}
+					{{ kegiatan.jam_mulai | date('H:i', frontEndTimezone) }}
+					{% endif %}
+				{% endif %}
+			</td>
 		</tr>
 		<tr>
 			<td>Lokasi</td>
 			<td>{{ kegiatan.lokasi }}</td>
 		</tr>
+		{% if kegiatan.peserta |length > 0 %}
 		<tr>
 			<td>Peserta</td>
 			<td>{{ kegiatan.peserta }}</td>
 		</tr>
+		{% endif %}
+		{% if kegiatan.pakaian |length > 0 %}
 		<tr>
 			<td>Pakaian</td>
 			<td>{{ kegiatan.pakaian }}</td>
 		</tr>
+		{% endif %}
+		{% if kegiatan.pelaksana_kegiatan |length > 0 %}
 		<tr>
 			<td>Pelaksana Kegiatan</td>
 			<td>{{ kegiatan.pelaksana_kegiatan }}</td>
 		</tr>
+		{% endif %}
+		{% if kegiatan.penjelasan |length > 0 %}
 		<tr>
 			<td>Penjelasan Tambahan</td>
 			<td>{{ kegiatan.penjelasan }}</td>
 		</tr>
+		{% endif %}
 		{% if kegiatan.lampiran.count > 0 %}
 		<tr class="info">
 			<td colspan="2">

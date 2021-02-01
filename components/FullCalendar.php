@@ -2,6 +2,8 @@
 
 use Carbon\Carbon;
 use Cms\Classes\ComponentBase;
+use Cms\Classes\Controller;
+use Cms\Classes\Page;
 use LogicException;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use InvalidArgumentException;
@@ -30,14 +32,37 @@ class FullCalendar extends ComponentBase
         ];
     }
 
+    public function defineProperties()
+    {
+        return [
+            'detailPage' => [
+                'title'       => 'Halaman detail',
+                'description' => 'Halaman detail saat judul kegiatan di klik',
+                'default'     => 'jadwal/detail',
+            ],
+
+        ];
+    }
+
     /**
-     * Ini akan dipanggil dari custom Route!
+     * Load daftar halaman detailnya!
+     * @return mixed 
+     */
+    public function getDetailPageOptions()
+    {
+        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
+    }
+
+    /**
+     * Ini akan dipanggil dari custom Route! Karena ini dipanggil dari custom route
+     * maka kita tidak bisa melakukan render terhadap pageUrl karena controller tidak
+     * ada.
      * @return array 
      * @throws LogicException 
      * @throws BindingResolutionException 
      * @throws InvalidArgumentException 
      */
-    public static function onGetEvents()
+    public function onGetEvents()
     {
         $start = input('start');
         $end = input('end');
@@ -64,6 +89,7 @@ class FullCalendar extends ComponentBase
             $satuHari = false;
             $data[$i]['id'] = $e->id;
             $data[$i]['title'] = $e->judul;
+            $data[$i]['slug'] = $e->slug;
             $theStart = Carbon::parse("{$e->tgl_mulai} {$e->jam_mulai}", $systemTZ);
             if ($e->tgl_selesai == null) {
                 // satu hari
@@ -77,22 +103,28 @@ class FullCalendar extends ComponentBase
             } else {
                 if ($e->jam_selesai == null) {
                     $theEnd = Carbon::parse("{$e->tgl_selesai}", $systemTZ);
-                    $satuHari = true;
                 } else {
                     $theEnd = Carbon::parse("{$e->tgl_selesai} {$e->jam_selesai}", $systemTZ);
                 }
             }
-            // trace_log($e->judul, $theStart, $theEnd);
-            // dapatkan, convert ke timezone si front end dan set formatnya
-            $data[$i]['start'] = $theStart->timezone($frontEndTimeZone)->toIso8601String();
-            $theEnd->timezone($frontEndTimeZone);
             // kalau di set satu hari, maka set pada waktu time telah dirubah timezone nya!
             if($satuHari) {
-                $theEnd->setTime(
-                    23, 59, 59
-                );
+                // $theEnd->setTime(
+                //     23, 59, 59
+                // );
+                $data[$i]['start'] = $theStart->timezone($frontEndTimeZone)->format("Y-m-d");
+                // untuk satu hari nilai end tidak perlu ditambahkan!
+                // $data[$i]['end'] = null;
+            } else {
+                // dapatkan, convert ke timezone si front end dan set formatnya
+                $data[$i]['start'] = $theStart->timezone($frontEndTimeZone)->toIso8601String();
+                $theEnd->timezone($frontEndTimeZone);
+                if($e->jam_selesai == null) {
+                    // set di sini supaya menunjukkan sampai akhir hari itu / full satu hari!
+                    $theEnd->endOfDay();
+                }
+                $data[$i]['end'] = $theEnd->toIso8601String();
             }
-            $data[$i]['end'] = $theEnd->toIso8601String();
             $i = $i + 1;
         }
         return $data;
@@ -103,6 +135,8 @@ class FullCalendar extends ComponentBase
         // lakukan penambahan assets
         $this->addCss('/plugins/yfktn/eventgubernur/assets/fullcalendar/lib/main.min.css');
         $this->addJs('/plugins/yfktn/eventgubernur/assets/fullcalendar/lib/main.min.js');
+
+        $this->page['detailPage'] = $this->property('detailPage', '#');
     }
     
 }

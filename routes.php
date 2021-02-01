@@ -9,6 +9,6 @@ use Yfktn\EventGubernur\Components\FullCalendar;
 
     \Route::any('events', function() {
         // lakukan pengambilan events di sini!
-        return response()->json(FullCalendar::onGetEvents());
+        return response()->json((new FullCalendar)->onGetEvents());
     });
 });
