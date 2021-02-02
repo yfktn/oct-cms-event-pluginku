@@ -10,8 +10,8 @@
 	<div class="panel {{ theNow == banding ? 'panel-primary': (theNow < banding ? 'panel-warning' : 'panel-success') }}">
 		<div class="panel-heading">
 			<h4>
-				<i class="fa fa-calendar" aria-hidden="true"></i> {{ kegiatan.tgl_mulai|date('d-m-Y') }} 
-				<i class="fa fa-clock-o" aria-hidden="true"></i> {{ kegiatan.jam_mulai|date('H:i') }} 
+				<i class="fa fa-calendar" aria-hidden="true"></i> {{ kegiatan.tgl_mulai|date('d-m-Y', frontEndTimezone) }} 
+				<i class="fa fa-clock-o" aria-hidden="true"></i> {{ kegiatan.jam_mulai|date('H:i', frontEndTimezone) }} 
 				<i class="fa fa-pencil-square" aria-hidden="true"></i> {{ kegiatan.judul }}
 			</h4>
 		</div>
@@ -21,7 +21,7 @@
 					<img src="{{ kegiatan.cover.getPath() | resize(85, 85, { mode: 'crop' }) }}" alt="Cover kegiatan">
 				</div>
 				<div class="media-body">
-					<h4 class="media-heading">Leading Sector: {{ kegiatan.pelaksana_kegiatan ?: 'SOPD Prov Kalteng' }}</h4>
+					<h4 class="media-heading">Leading Sector: {{ kegiatan.pelaksana_kegiatan ?: '-' }}</h4>
 					{{ kegiatan.ringkasan }}.
 					<br>
 					<a class="btn btn-xs btn-info" href="/{{ linkKeDetail }}/{{ kegiatan.slug }}" title="Link detail kegiatan {{ kegiatan.judul }}">

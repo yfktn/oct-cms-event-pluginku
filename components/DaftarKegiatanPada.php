@@ -81,7 +81,7 @@ class DaftarKegiatanPada extends ComponentBase
 
     protected function prepareVars() 
     {
-        $this->frontEndTimezone = config('yfktn.eventgubernur::defaultFrontEndTZ');
+        $this->page['frontEndTimezone'] = $this->frontEndTimezone = config('yfktn.eventgubernur::defaultFrontEndTZ');
 
         // $this->pageParam = $this->page['pageParam'] = $this->param($this->paramName('currPage'));
 		$this->tidakAdaJadwal = $this->page['tidakAdaJadwal'] = $this->property('tidakAdaJadwal');
