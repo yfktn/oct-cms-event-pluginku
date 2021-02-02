@@ -23,3 +23,7 @@
     - builder_table_update_yfktn_eventgubernur_item_nullable.php
 1.0.9:
     - 'Menambahkan komponen bootstrap calendar untuk tampilan kalendernya'
+1.0.10:
+    - 'Menambahkan catatan kegiatan'
+    - builder_table_update_yfktn_eventgubernur_catatan_kegiatan.php
+    

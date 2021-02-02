@@ -42,10 +42,16 @@
 			<td>{{ kegiatan.pelaksana_kegiatan }}</td>
 		</tr>
 		{% endif %}
+		{% if kegiatan.agenda |length > 0 %}
+		<tr>
+			<td>Agenda Kegiatan</td>
+			<td>{{ kegiatan.agenda|nl2br }}</td>
+		</tr>
+		{% endif %}
 		{% if kegiatan.penjelasan |length > 0 %}
 		<tr>
 			<td>Penjelasan Tambahan</td>
-			<td>{{ kegiatan.penjelasan }}</td>
+			<td>{{ kegiatan.penjelasan|nl2br }}</td>
 		</tr>
 		{% endif %}
 		{% if kegiatan.lampiran.count > 0 %}

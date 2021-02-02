@@ -34,22 +34,18 @@ fields:
         span: auto
         type: text
         comment: 'Masukkan Peserta Kegiatan'
+    agenda:
+        label: 'Agenda Kegiatan'
+        size: small
+        span: auto
+        type: textarea
+        comment: 'Masukkan tentang agenda kegiatan yang akan dilakukan'
     penjelasan:
         label: 'Penjelasan Tambahan'
         size: small
         span: auto
         type: textarea
         comment: 'Masukkan Tambahan Penjelasan Bila Perlu'
-    cover:
-        label: 'Cover Kegiatan'
-        mode: image
-        useCaption: true
-        thumbOptions:
-            mode: crop
-            extension: auto
-        span: auto
-        type: fileupload
-        comment: 'Pilih gambar untuk cover kegiatan'
 tabs:
     fields:
         pelaksana_kegiatan:
@@ -102,6 +98,17 @@ tabs:
             type: fileupload
             comment: 'Pilih File Untuk Lampiran'
             tab: 'File Lampiran'
+        cover:
+            label: 'Cover Kegiatan'
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            comment: 'Pilih gambar untuk cover kegiatan'
+            tab: 'Cover Kegiatan'
         gambar:
             label: 'Upload Gambar'
             mode: image
