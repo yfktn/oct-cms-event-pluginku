@@ -28,4 +28,5 @@
     - builder_table_update_yfktn_eventgubernur_catatan_kegiatan.php
 1.0.11:
     - 'Bug redeclared class at migration'
-    
+1.0.12:
+    - 'Menu untuk octoberCMS versi 2 & rubah tampilan utama'

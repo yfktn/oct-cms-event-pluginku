@@ -22,6 +22,12 @@ navigation:
         permissions:
             - 'Entri Event'
         sideMenu:
+            side-menu-daftar:
+                label: Agenda
+                url: yfktn/eventgubernur/jadwalgubernur
+                icon: icon-calendar
+                permissions:
+                    - 'Entri Event'
             side-menu-item-cetak:
                 label: Pencetakan
                 url: yfktn/eventgubernur/cetakjadwal/create

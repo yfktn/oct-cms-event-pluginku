@@ -24,30 +24,33 @@ fields:
         comment: 'Masukkan Jam Mulai Kegiatan'
     lokasi:
         label: Lokasi
-        span: auto
+        span: full
         placeholder: ''
         required: 1
         type: text
         comment: 'Masukkan Lokasi Kegiatan'
-    peserta:
-        label: Peserta
-        span: auto
-        type: text
-        comment: 'Masukkan Peserta Kegiatan'
-    agenda:
-        label: 'Agenda Kegiatan'
-        size: small
-        span: auto
-        type: textarea
-        comment: 'Masukkan tentang agenda kegiatan yang akan dilakukan'
-    penjelasan:
-        label: 'Penjelasan Tambahan'
-        size: small
-        span: auto
-        type: textarea
-        comment: 'Masukkan Tambahan Penjelasan Bila Perlu'
 tabs:
     fields:
+        peserta:
+            label: Peserta
+            span: full
+            type: text
+            comment: 'Masukkan Peserta Kegiatan'
+            tab: 'Utama'
+        agenda:
+            label: 'Agenda Kegiatan'
+            size: small
+            span: auto
+            type: textarea
+            comment: 'Masukkan tentang agenda kegiatan yang akan dilakukan'
+            tab: 'Utama'
+        penjelasan:
+            label: 'Penjelasan Tambahan'
+            size: small
+            span: auto
+            type: textarea
+            comment: 'Masukkan Tambahan Penjelasan Bila Perlu'
+            tab: 'Utama'
         pelaksana_kegiatan:
             label: 'Leading Sector'
             span: auto
@@ -108,7 +111,7 @@ tabs:
             span: auto
             type: fileupload
             comment: 'Pilih gambar untuk cover kegiatan'
-            tab: 'Cover Kegiatan'
+            tab: 'Gambar Kegiatan'
         gambar:
             label: 'Upload Gambar'
             mode: image
@@ -119,4 +122,4 @@ tabs:
             span: auto
             type: fileupload
             comment: 'Masukkan Gambar Kegiatan'
-            tab: 'Galleri Kegiatan'
+            tab: 'Gambar Kegiatan'
