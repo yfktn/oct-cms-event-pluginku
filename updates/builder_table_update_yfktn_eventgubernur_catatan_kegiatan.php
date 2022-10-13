@@ -7,7 +7,7 @@ use October\Rain\Database\Updates\Migration;
  * Rubah beberapa field menjadi nullable sebagaimana issu nomor 3
  * @package Yfktn\EventGubernur\Updates
  */
-class BuilderTableUpdateYfktnEventgubernurItemNullable extends Migration
+class BuilderTableUpdateYfktnEventgubernurCatatanKegiatan extends Migration
 {
     public function up()
     {
