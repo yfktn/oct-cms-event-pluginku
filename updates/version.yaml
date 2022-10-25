@@ -30,3 +30,5 @@
     - 'Bug redeclared class at migration'
 1.0.12:
     - 'Menu untuk octoberCMS versi 2 & rubah tampilan utama'
+1.0.13:
+    - 'Keterangan Agenda dibuat WYSIWYG & ket. tambahan dihilangkan!'

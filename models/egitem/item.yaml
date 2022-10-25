@@ -31,26 +31,27 @@ fields:
         comment: 'Masukkan Lokasi Kegiatan'
 tabs:
     fields:
+        agenda:
+            label: 'Agenda Kegiatan'
+            size: small
+            toolbarButtons: bold,italic,underline
+            span: full
+            type: richeditor
+            comment: 'Masukkan tentang agenda kegiatan yang akan dilaksanakan.'
+            tab: 'Utama'
         peserta:
             label: Peserta
             span: full
             type: text
             comment: 'Masukkan Peserta Kegiatan'
             tab: 'Utama'
-        agenda:
-            label: 'Agenda Kegiatan'
-            size: small
-            span: auto
-            type: textarea
-            comment: 'Masukkan tentang agenda kegiatan yang akan dilakukan'
-            tab: 'Utama'
-        penjelasan:
-            label: 'Penjelasan Tambahan'
-            size: small
-            span: auto
-            type: textarea
-            comment: 'Masukkan Tambahan Penjelasan Bila Perlu'
-            tab: 'Utama'
+        #penjelasan:
+        #    label: 'Penjelasan Tambahan'
+        #    size: small
+        #    span: auto
+        #    type: textarea
+        #    comment: 'Masukkan Tambahan Penjelasan Bila Perlu'
+        #    tab: 'Utama'
         pelaksana_kegiatan:
             label: 'Leading Sector'
             span: auto
@@ -99,8 +100,8 @@ tabs:
                 extension: auto
             span: full
             type: fileupload
-            comment: 'Pilih File Untuk Lampiran'
-            tab: 'File Lampiran'
+            comment: 'Upload dokumen lampiran yang berguna untuk agenda ini, misalnya: undangan dll'
+            tab: 'Lampiran & Gambar'
         cover:
             label: 'Cover Kegiatan'
             mode: image
@@ -110,8 +111,8 @@ tabs:
                 extension: auto
             span: auto
             type: fileupload
-            comment: 'Pilih gambar untuk cover kegiatan'
-            tab: 'Gambar Kegiatan'
+            comment: 'Upload gambar untuk cover kegiatan'
+            tab: 'Lampiran & Gambar'
         gambar:
             label: 'Upload Gambar'
             mode: image
@@ -121,5 +122,5 @@ tabs:
                 extension: auto
             span: auto
             type: fileupload
-            comment: 'Masukkan Gambar Kegiatan'
-            tab: 'Gambar Kegiatan'
+            comment: 'Upload gambar berkaitan dengan pelaksanaan kegiatan'
+            tab: 'Lampiran & Gambar'
