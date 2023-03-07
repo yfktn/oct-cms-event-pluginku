@@ -69,6 +69,7 @@ class FullCalendar extends ComponentBase
         // dd($start, $end);
         // trace_log($start, $end);
         $systemTZ = config("app.timezone");
+        $isConvertToFrontEndTimeZone = config("yfktn.eventgubernur::convertToFrontEndTimeZone");
         // karena di tanggal yang diberikan waktu fullcalendar melakukan permintaan
         // events, pada string yang diberikan sudah ada informasi timezone nya
         // sehingga kita tidak perlu lagi melakukan proses setting manual timezone
@@ -82,6 +83,7 @@ class FullCalendar extends ComponentBase
                 $startTZ->copy()->timezone($systemTZ), 
                 $endTZ->copy()->timezone($systemTZ)])
             ->get();
+        trace_log($events->toArray(), ($isConvertToFrontEndTimeZone? "TRUE":"FALSE"));
         // loop untuk melakukan render ke JSON nya
         $data = [];
         $i = 0;
@@ -90,7 +92,7 @@ class FullCalendar extends ComponentBase
             $data[$i]['id'] = $e->id;
             $data[$i]['title'] = $e->judul;
             $data[$i]['slug'] = $e->slug;
-            $theStart = Carbon::parse("{$e->tgl_mulai} {$e->jam_mulai}", $systemTZ);
+            $theStart = Carbon::parse("{$e->tgl_mulai} {$e->jam_mulai}");
             if ($e->tgl_selesai == null) {
                 // satu hari
                 if ($e->jam_selesai == null) {
@@ -102,29 +104,39 @@ class FullCalendar extends ComponentBase
                 }
             } else {
                 if ($e->jam_selesai == null) {
-                    $theEnd = Carbon::parse("{$e->tgl_selesai}", $systemTZ);
+                    $theEnd = Carbon::parse("{$e->tgl_selesai}");
                 } else {
                     $theEnd = Carbon::parse("{$e->tgl_selesai} {$e->jam_selesai}", $systemTZ);
                 }
             }
+            trace_log($theStart->format("Y-m-d H:i"), $theEnd->format("Y-m-d H:i"));
             // kalau di set satu hari, maka set pada waktu time telah dirubah timezone nya!
             if($satuHari) {
                 // $theEnd->setTime(
                 //     23, 59, 59
                 // );
-                $data[$i]['start'] = $theStart->timezone($frontEndTimeZone)->format("Y-m-d");
+                $data[$i]['start'] = $isConvertToFrontEndTimeZone ? 
+                    $theStart->timezone($frontEndTimeZone)->format("Y-m-d") :
+                    $theStart->shiftTimezone($frontEndTimeZone)->format("Y-m-d");
                 // untuk satu hari nilai end tidak perlu ditambahkan!
                 // $data[$i]['end'] = null;
             } else {
                 // dapatkan, convert ke timezone si front end dan set formatnya
-                $data[$i]['start'] = $theStart->timezone($frontEndTimeZone)->toIso8601String();
-                $theEnd->timezone($frontEndTimeZone);
+                $data[$i]['start'] = $isConvertToFrontEndTimeZone?
+                    $theStart->timezone($frontEndTimeZone)->toIso8601String():
+                    $theStart->shiftTimezone($frontEndTimeZone)->toIso8601String();
+                if($isConvertToFrontEndTimeZone) {
+                    $theEnd->timezone($frontEndTimeZone);
+                } else {
+                    $theEnd->shiftTimezone($frontEndTimeZone);
+                }
                 if($e->jam_selesai == null) {
                     // set di sini supaya menunjukkan sampai akhir hari itu / full satu hari!
                     $theEnd->endOfDay();
                 }
                 $data[$i]['end'] = $theEnd->toIso8601String();
             }
+            trace_log($data[$i]);
             $i = $i + 1;
         }
         return $data;

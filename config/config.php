@@ -3,6 +3,9 @@
  * Di sini adalah setting untuk aplikasi ini
  */
 return [
+    // apakah timezone ini di convert? Dari default backend timezone ke front end timezone
+    // sebagaimana setting di bawah ini?
+    'convertToFrontEndTimeZone' => false,
     // default timezone untuk front end
     'defaultFrontEndTZ' => 'Asia/Jakarta',
     'defaultFrontEndTZLabel' => 'WIB',
