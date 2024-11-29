@@ -86,8 +86,8 @@ class DaftarKegiatanPada extends ComponentBase
         // $this->pageParam = $this->page['pageParam'] = $this->param($this->paramName('currPage'));
 		$this->tidakAdaJadwal = $this->page['tidakAdaJadwal'] = $this->property('tidakAdaJadwal');
 				
-		$this->fromDate = $this->param($this->paramName('fromDate'));
-        $this->toDate = $this->param($this->paramName('toDate'));
+		$this->fromDate = $this->property('fromDate'); //  $this->param($this->paramName('fromDate'));
+        $this->toDate = $this->property('toDate'); // $this->param($this->paramName('toDate'));
 		if(!$this->toDate || $this->toDate == null) {
 			$this->toDate = $this->fromDate;
 		}
